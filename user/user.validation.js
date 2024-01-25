@@ -1,6 +1,6 @@
 import Yup from "yup";
 
-export let userSchema = Yup.object({
+export let userRegisterSchema = Yup.object({
   name: Yup.string()
     .required("Name is required.")
     .trim()
@@ -18,4 +18,13 @@ export let userSchema = Yup.object({
     .trim()
     .min(4, "Password must be at least 4 characters.")
     .max(20, "Password must be at max 20 characters."),
+});
+
+export let loginUserSchema = Yup.object({
+  email: Yup.string()
+    .email("Must be valid email.")
+    .required("Email is required.")
+    .trim()
+    .lowercase(),
+  password: Yup.string().required("Password is required.").trim(),
 });
