@@ -102,12 +102,14 @@ router.post(
     }
 
     // generate token
-    const token = jwt.sign({ email: user.email }, "abc@3456");
+    const token = jwt.sign({ email: user.email }, "abc@3456", {
+      expiresIn: "1m",
+    });
 
     // hide password from user
     user.password = undefined;
-    // send response
 
+    // send response
     return res
       .status(200)
       .send({ message: "logged in", token: token, user: user });
